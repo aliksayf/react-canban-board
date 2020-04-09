@@ -12,9 +12,11 @@ function Board() {
 
     const addNewTask = (obj) => {
         const arr = [...taskList];
-        arr.push(obj);
+        arr.push({...obj});
         setTaskList([...arr]);
+        toggle();
     };
+
 
     const toggle = () => setModal(!modal);
 
