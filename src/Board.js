@@ -5,6 +5,8 @@ import NewTask from "./NewTask";
 import TaskDetailsView from "./TaskDetailsView";
 
 
+
+
 function Board() {
 
     const [taskList, setTaskList] = useState(tasks);
@@ -39,7 +41,7 @@ function Board() {
                                     {el}
                                 </ListGroupItem>
                                 {taskList.map(task => task.status === idx + 1 ?
-                                    <ListGroupItem color="secondary" key={task.id} onClick={()=>openTask({...task})}>{task.name}</ListGroupItem> : '')}
+                                    <ListGroupItem className="pointer" color="secondary" key={task.id} onClick={()=>openTask({...task})}>{task.name}</ListGroupItem> : '')}
                             </ListGroup>
                         </Col>
                 )}

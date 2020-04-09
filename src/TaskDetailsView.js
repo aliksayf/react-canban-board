@@ -15,24 +15,7 @@ function TaskDetailsView(props) {
         <Modal isOpen={openTaskView} toggle={toggle}>
           <ModalHeader toggle={toggle}>{taskDetails.name}</ModalHeader>
           <ModalBody>
-            <Form>
-              <FormGroup row>
-                <Col sm="2">
-                  <Label for="exampleFile">Title</Label>
-                </Col>
-                <Col>
-                  <Input/>
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Col sm="2">
-                  <Label for="exampleText">Description</Label>
-                </Col>
-                <Col>
-                  <Input/>
-                </Col>
-              </FormGroup>
-            </Form>
+            {taskDetails.description}
           </ModalBody>
           <ModalFooter>
             <Button color="primary" >Save</Button>{' '}
