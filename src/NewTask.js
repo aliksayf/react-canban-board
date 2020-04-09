@@ -9,34 +9,31 @@ import {
     FormGroup,
     Label,
     Input,
-    FormText,
     Col
 } from 'reactstrap';
 
 function NewTask(props) {
 
-    const emptyFields = { name: '', description: ''}
-
-    const [newTaskValues, setNewTaskValues] = useState(emptyFields);
-
     const {
         toggle,
-        modal
+        modal,
     } = props;
 
+    const emptyFields = {name: '', description: ''}
+    const [newTaskValues, setNewTaskValues] = useState(emptyFields);
+
     const inputTaskName = (name) => {
-        setNewTaskValues({ ...newTaskValues, name: name} );
+        setNewTaskValues({...newTaskValues, name: name});
     };
 
     const inputTaskDescription = (text) => {
-        setNewTaskValues({ ...newTaskValues, description: text} );
+        setNewTaskValues({...newTaskValues, description: text});
     };
 
     const saveNewTask = () => {
         props.addNewTask({...newTaskValues, status: 1});
         setNewTaskValues(emptyFields);
-    }
-
+    };
 
     return (
         <div>
@@ -52,8 +49,9 @@ function NewTask(props) {
                                 <Input
                                     type="test"
                                     name="title"
+                                    required
                                     value={newTaskValues.name}
-                                    onChange={(e)=>inputTaskName(e.target.value)}/>
+                                    onChange={(e) => inputTaskName(e.target.value)}/>
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -66,7 +64,7 @@ function NewTask(props) {
                                     name="text"
                                     id="exampleText"
                                     placeholder={newTaskValues.description}
-                                    onChange={(e)=>inputTaskDescription(e.target.value)}/>
+                                    onChange={(e) => inputTaskDescription(e.target.value)}/>
                             </Col>
                         </FormGroup>
                     </Form>
