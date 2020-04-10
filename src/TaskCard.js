@@ -22,20 +22,25 @@ const TaskCard = (props) => {
     const buttonRightHandler =() => {
         changeTaskStatus(task.id, +1);
     };
+
     const buttonLeftHandler =() => {
         changeTaskStatus(task.id, -1);
+    };
+
+    const onTaskClickHandler = () => {
+        openTask(task);
     };
 
 
     return (
         <div>
             <ListGroupItem >
-                <Row className="pointer" onClick={() => openTask({...task})}>
+                <Row className="pointer" onClick={onTaskClickHandler}>
                     <Col xs="1">
                         {task.queue}
-                    </Col>
-                    <Col>
-                        <Label>{task.name}</Label>
+                    </Col >
+                    <Col >
+                        <Label className="pointer" onClick={onTaskClickHandler}>{task.name}</Label>
                     </Col>
                 </Row>
                 <Row>
@@ -48,7 +53,7 @@ const TaskCard = (props) => {
                             onClick={buttonLeftHandler}
                             className={leftButtonDisplays(idx) + ' pointer '}>🡄</Button>
                     </Col>
-                    <Col>
+                    <Col className="pointer" onClick={onTaskClickHandler}>
                         <Badge color={priorityColors[task.priority]}>{task.priority} priority</Badge>
                     </Col>
                     <Col>

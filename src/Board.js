@@ -32,9 +32,14 @@ function Board() {
     const changeTaskStatus = (id, diff) => {
         const changedTask = [...taskList]
         changedTask.map(el => el.id === id ? (el.status += diff) : '');
-
-        console.log(changedTask);
         setTaskList([...changedTask] )
+    };
+
+    const changeTaskValues = (obj) => {
+        let index = taskList.findIndex(x => x.id === obj.id);
+        const changedTask = [...taskList]
+        changedTask.splice(index, 1, obj);
+        setTaskList([...changedTask] );
     };
 
     const toggleTaskDetail = () => setOpenTaskView(!openTaskView);
@@ -62,6 +67,8 @@ function Board() {
             <TaskDetailsView addNewTask={addNewTask}
                      toggle={toggleTaskDetail}
                      taskDetails={taskDetails}
+                     setTaskDetails={setTaskDetails}
+                     changeTaskValues={changeTaskValues}
                      openTaskView={openTaskView}/>
         </Container>
     );
