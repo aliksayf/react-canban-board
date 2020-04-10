@@ -6,7 +6,7 @@ function TaskDetailsView(props) {
   const {
     toggle,
     changeTaskValues,
-    removeTask,
+    toggleDeleteConfirm,
     taskDetails,
     setTaskDetails,
     openTaskView,
@@ -38,14 +38,14 @@ function TaskDetailsView(props) {
   };
 
   const deleteButtonHandler = () => {
-    removeTask(taskDetails.id);
+    toggleDeleteConfirm();
     toggle();
   }
 
 
   return (
     <div>
-        <Modal isOpen={openTaskView} toggle={toggle}>
+        <Modal isOpen={openTaskView} toggle={toggle} className=' modal-big'>
           <ModalHeader toggle={toggle}>Task details</ModalHeader>
           <ModalBody>
             <Form>

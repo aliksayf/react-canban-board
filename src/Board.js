@@ -4,6 +4,7 @@ import {colors, statusBlock, tasks} from './tasks';
 import NewTask from "./NewTask";
 import TaskDetailsView from "./TaskDetailsView";
 import StatusColumn from "./StatusColumn";
+import DeleteConfirmModal from "./DeleteConfirmModal";
 
 
 function Board() {
@@ -13,6 +14,7 @@ function Board() {
     const [taskList, setTaskList] = useState([...tasks]);
     const [modal, setModal] = useState(false);
     const [openTaskView, setOpenTaskView] = useState(false);
+    const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
     const [taskDetails, setTaskDetails] = useState({});
 
     const addNewTask = (obj) => {
@@ -40,14 +42,16 @@ function Board() {
         setTaskList([...changedTask]);
     };
 
-    const removeTask = (id) => {
-        const changedTaskList = [...taskList].filter(el => el.id !== id);
-        console.log(id)
+    const removeTask = () => {
+        const changedTaskList = [...taskList].filter(el => el.id !== taskDetails.id);
         setTaskList(changedTaskList);
     };
 
     const toggleTaskDetail = () => setOpenTaskView(!openTaskView);
+    const toggleDeleteConfirm = () => setOpenDeleteConfirm(!openDeleteConfirm);
     const toggleNewTask = () => setModal(!modal);
+
+
 
     return (
         <Container className="themed-container" fluid="lg">
@@ -73,9 +77,14 @@ function Board() {
                              toggle={toggleTaskDetail}
                              taskDetails={taskDetails}
                              setTaskDetails={setTaskDetails}
+                             toggleDeleteConfirm={toggleDeleteConfirm}
                              removeTask={removeTask}
                              changeTaskValues={changeTaskValues}
                              openTaskView={openTaskView}/>
+
+             <DeleteConfirmModal toggleDeleteConfirm={toggleDeleteConfirm}
+                                 openDeleteConfirm={openDeleteConfirm}
+                                 removeTask={removeTask}/>
         </Container>
     );
 }
