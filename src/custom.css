@@ -8,3 +8,7 @@
 .pointer:hover {
     cursor: pointer;
 }
+
+.hidden {
+    visibility: hidden;
+}

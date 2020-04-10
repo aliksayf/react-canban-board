@@ -3,17 +3,17 @@ import {Col, Container, ListGroup, ListGroupItem, Row, Button } from 'reactstrap
 import {colors, statusBlock, tasks} from './tasks';
 import NewTask from "./NewTask";
 import TaskDetailsView from "./TaskDetailsView";
+import StatusColumn from "./StatusColumn";
 
 
 
 
 function Board() {
 
-    const [taskList, setTaskList] = useState(tasks);
+    const [taskList, setTaskList] = useState( [...tasks]);
     const [modal, setModal] = useState(false);
     const [openTaskView, setOpenTaskView] = useState(false);
     const [taskDetails, setTaskDetails] = useState({});
-
 
     const addNewTask = (obj) => {
         const arr = [...taskList];
@@ -35,15 +35,16 @@ function Board() {
             <Button color="primary" onClick={toggleNewTask}>New task</Button>
             <Row>
                 {statusBlock.map((el, idx) =>
-                        <Col md='3' color={colors[idx]}>
-                            <ListGroup>
-                                <ListGroupItem color={colors[idx]} key={idx}>
-                                    {el}
-                                </ListGroupItem>
-                                {taskList.map(task => task.status === idx + 1 ?
-                                    <ListGroupItem className="pointer" color="secondary" key={task.id} onClick={()=>openTask({...task})}>{task.name}</ListGroupItem> : '')}
-                            </ListGroup>
-                        </Col>
+                    <StatusColumn key={el} el={el} idx={idx} openTask={openTask} taskList={taskList}/>
+                        // // <Col md='3' color={colors[idx]} key={idx+200}>
+                        //     <ListGroup key={idx+300}>
+                        //         <ListGroupItem color={colors[idx]} key={idx+100}>
+                        //             {el}
+                        //         </ListGroupItem>
+                        //         {taskList.map(task => task.status === idx + 1 ?
+                        //             <ListGroupItem className="pointer" color="secondary" key={task.id} onClick={()=>openTask({...task})}>{task.name}</ListGroupItem> : '')}
+                        //     </ListGroup>
+                        // // </Col>
                 )}
             </Row>
 

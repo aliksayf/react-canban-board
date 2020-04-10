@@ -15,7 +15,7 @@ export const tasks = [
         id: 3,
         name: 'Create new task file',
         description: 'Create module for add new task',
-        status: 3
+        status: 4
     },
     {
         id: 4,

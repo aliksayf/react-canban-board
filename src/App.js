@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import Board from './Board';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './custom.css';
 
 
 function App() {
-  return (
-    <div className="App">
-      <Board/>
-    </div>
-  );
+    return (
+        <StrictMode>
+            <Board/>
+        </StrictMode>
+    );
 }
 
 export default App;
