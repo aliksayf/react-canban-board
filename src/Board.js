@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
-import {Col, Container, ListGroup, ListGroupItem, Row, Button } from 'reactstrap';
+import React, {useState} from 'react';
+import {Col, Container, ListGroup, ListGroupItem, Row, Button} from 'reactstrap';
 import {colors, statusBlock, tasks} from './tasks';
 import NewTask from "./NewTask";
 import TaskDetailsView from "./TaskDetailsView";
 import StatusColumn from "./StatusColumn";
 
 
-
-
 function Board() {
 
     const emptyFields = {name: '', description: ''}
     const [newTaskValues, setNewTaskValues] = useState(emptyFields);
-    const [taskList, setTaskList] = useState( [...tasks]);
+    const [taskList, setTaskList] = useState([...tasks]);
     const [modal, setModal] = useState(false);
     const [openTaskView, setOpenTaskView] = useState(false);
     const [taskDetails, setTaskDetails] = useState({});
@@ -32,14 +30,20 @@ function Board() {
     const changeTaskStatus = (id, diff) => {
         const changedTask = [...taskList]
         changedTask.map(el => el.id === id ? (el.status += diff) : '');
-        setTaskList([...changedTask] )
+        setTaskList([...changedTask])
     };
 
     const changeTaskValues = (obj) => {
         let index = taskList.findIndex(x => x.id === obj.id);
         const changedTask = [...taskList]
         changedTask.splice(index, 1, obj);
-        setTaskList([...changedTask] );
+        setTaskList([...changedTask]);
+    };
+
+    const removeTask = (id) => {
+        const changedTaskList = [...taskList].filter(el => el.id !== id);
+        console.log(id)
+        setTaskList(changedTaskList);
     };
 
     const toggleTaskDetail = () => setOpenTaskView(!openTaskView);
@@ -54,8 +58,9 @@ function Board() {
                                   el={el}
                                   idx={idx}
                                   changeTaskStatus={changeTaskStatus}
+                                  removeTask={removeTask}
                                   openTask={openTask}
-                                  taskList={taskList} />
+                                  taskList={taskList}/>
                 )}
             </Row>
 
@@ -65,11 +70,11 @@ function Board() {
                      setNewTaskValues={setNewTaskValues}
                      modal={modal}/>
             <TaskDetailsView addNewTask={addNewTask}
-                     toggle={toggleTaskDetail}
-                     taskDetails={taskDetails}
-                     setTaskDetails={setTaskDetails}
-                     changeTaskValues={changeTaskValues}
-                     openTaskView={openTaskView}/>
+                             toggle={toggleTaskDetail}
+                             taskDetails={taskDetails}
+                             setTaskDetails={setTaskDetails}
+                             changeTaskValues={changeTaskValues}
+                             openTaskView={openTaskView}/>
         </Container>
     );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroupItem, Button, Label, Row, Col, Badge } from "reactstrap";
+import {ListGroupItem, Button, Label, Row, Col, Badge} from "reactstrap";
 
 const TaskCard = (props) => {
 
@@ -7,7 +7,8 @@ const TaskCard = (props) => {
         task,
         idx,
         changeTaskStatus,
-        openTask
+        openTask,
+        removeTask
     } = props;
 
     const priorityColors = {
@@ -19,11 +20,11 @@ const TaskCard = (props) => {
     const leftButtonDisplays = (i) => i === 0 ? ' hidden' : '';
     const rightButtonDisplays = (i) => i === 3 ? ' hidden' : '';
 
-    const buttonRightHandler =() => {
+    const buttonRightHandler = () => {
         changeTaskStatus(task.id, +1);
     };
 
-    const buttonLeftHandler =() => {
+    const buttonLeftHandler = () => {
         changeTaskStatus(task.id, -1);
     };
 
@@ -31,17 +32,22 @@ const TaskCard = (props) => {
         openTask(task);
     };
 
+    const deleteHandler = () => {
+        removeTask(task.id);
+    };
+
 
     return (
         <div>
-            <ListGroupItem >
-                <Row className="pointer" onClick={onTaskClickHandler}>
+            <ListGroupItem>
+                <Row>
                     <Col xs="1">
                         {task.queue}
-                    </Col >
-                    <Col >
+                    </Col>
+                    <Col>
                         <Label className="pointer" onClick={onTaskClickHandler}>{task.name}</Label>
                     </Col>
+                    <Button onClick={deleteHandler} color='danger'>x</Button>
                 </Row>
                 <Row>
                     <Col>

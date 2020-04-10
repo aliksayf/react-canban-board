@@ -10,7 +10,8 @@ function StatusColumn (props) {
         idx,
         taskList,
         changeTaskStatus,
-        openTask
+        openTask,
+        removeTask
     } = props;
 
     return (
@@ -23,6 +24,7 @@ function StatusColumn (props) {
                      <TaskCard key={task.id}
                                task={task}
                                idx={idx}
+                               removeTask={removeTask}
                                changeTaskStatus={changeTaskStatus}
                                openTask={openTask} />
                  )}
