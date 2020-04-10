@@ -10,6 +10,12 @@ const TaskCard = (props) => {
         openTask
     } = props;
 
+    const priorityColors = {
+        Low: "light",
+        Mid: "warning",
+        High: "danger"
+    }
+
     const leftButtonDisplays = (i) => i === 0 ? ' hidden' : '';
     const rightButtonDisplays = (i) => i === 3 ? ' hidden' : '';
 
@@ -43,7 +49,7 @@ const TaskCard = (props) => {
                             className={leftButtonDisplays(idx) + ' pointer '}>🡄</Button>
                     </Col>
                     <Col>
-
+                        <Badge color={priorityColors[task.priority]}>{task.priority} priority</Badge>
                     </Col>
                     <Col>
                         {/*<Button size="sm" className={rightButtonDisplays(idx) + " float-right"}>►</Button>*/}

@@ -14,7 +14,7 @@ function StatusColumn (props) {
     } = props;
 
     return (
-        <Col md='3' color={colors[idx]} >
+        <Col md='3' color={colors[idx]} className="px-md-1">
             <ListGroup>
                 <ListGroupItem color={colors[idx]} >
                     {el}

@@ -10,6 +10,8 @@ import StatusColumn from "./StatusColumn";
 
 function Board() {
 
+    const emptyFields = {name: '', description: ''}
+    const [newTaskValues, setNewTaskValues] = useState(emptyFields);
     const [taskList, setTaskList] = useState( [...tasks]);
     const [modal, setModal] = useState(false);
     const [openTaskView, setOpenTaskView] = useState(false);
@@ -53,7 +55,9 @@ function Board() {
             </Row>
 
             <NewTask addNewTask={addNewTask}
-                     toggle={toggleNewTask}
+                     toggleNewTask={toggleNewTask}
+                     newTaskValues={newTaskValues}
+                     setNewTaskValues={setNewTaskValues}
                      modal={modal}/>
             <TaskDetailsView addNewTask={addNewTask}
                      toggle={toggleTaskDetail}
