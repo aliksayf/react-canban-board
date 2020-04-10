@@ -6,6 +6,7 @@ function TaskDetailsView(props) {
   const {
     toggle,
     changeTaskValues,
+    removeTask,
     taskDetails,
     setTaskDetails,
     openTaskView,
@@ -35,6 +36,11 @@ function TaskDetailsView(props) {
     setEditDisabled(true);
     toggle();
   };
+
+  const deleteButtonHandler = () => {
+    removeTask(taskDetails.id);
+    toggle();
+  }
 
 
   return (
@@ -89,7 +95,10 @@ function TaskDetailsView(props) {
               </FormGroup>
             </Form>
           </ModalBody>
-          <ModalFooter>
+          <ModalFooter row>
+            <Col>
+            <Button color="danger" className="float-left" onClick={deleteButtonHandler}>Delete Task</Button>
+            </Col>
             <Button color="primary" onClick={inputEditHandler}>{editDisabled ? 'Edit': 'Save'}</Button>{' '}
             <Button color="secondary" onClick={toggle}>Cancel</Button>
           </ModalFooter>

@@ -73,6 +73,7 @@ function Board() {
                              toggle={toggleTaskDetail}
                              taskDetails={taskDetails}
                              setTaskDetails={setTaskDetails}
+                             removeTask={removeTask}
                              changeTaskValues={changeTaskValues}
                              openTaskView={openTaskView}/>
         </Container>
