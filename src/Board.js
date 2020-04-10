@@ -27,6 +27,14 @@ function Board() {
         toggleTaskDetail();
     };
 
+    const changeTaskStatus = (id, diff) => {
+        const changedTask = [...taskList]
+        changedTask.map(el => el.id === id ? (el.status += diff) : '');
+
+        console.log(changedTask);
+        setTaskList([...changedTask] )
+    };
+
     const toggleTaskDetail = () => setOpenTaskView(!openTaskView);
     const toggleNewTask = () => setModal(!modal);
 
@@ -35,16 +43,12 @@ function Board() {
             <Button color="primary" onClick={toggleNewTask}>New task</Button>
             <Row>
                 {statusBlock.map((el, idx) =>
-                    <StatusColumn key={el} el={el} idx={idx} openTask={openTask} taskList={taskList}/>
-                        // // <Col md='3' color={colors[idx]} key={idx+200}>
-                        //     <ListGroup key={idx+300}>
-                        //         <ListGroupItem color={colors[idx]} key={idx+100}>
-                        //             {el}
-                        //         </ListGroupItem>
-                        //         {taskList.map(task => task.status === idx + 1 ?
-                        //             <ListGroupItem className="pointer" color="secondary" key={task.id} onClick={()=>openTask({...task})}>{task.name}</ListGroupItem> : '')}
-                        //     </ListGroup>
-                        // // </Col>
+                    <StatusColumn key={el}
+                                  el={el}
+                                  idx={idx}
+                                  changeTaskStatus={changeTaskStatus}
+                                  openTask={openTask}
+                                  taskList={taskList} />
                 )}
             </Row>
 

@@ -9,6 +9,7 @@ function StatusColumn (props) {
         el,
         idx,
         taskList,
+        changeTaskStatus,
         openTask
     } = props;
 
@@ -19,7 +20,11 @@ function StatusColumn (props) {
                     {el}
                 </ListGroupItem>
                  {taskList.map(task => task.status === idx + 1 &&
-                     <TaskCard key={task.id} task={task} openTask={openTask} idx={idx}/>
+                     <TaskCard key={task.id}
+                               task={task}
+                               idx={idx}
+                               changeTaskStatus={changeTaskStatus}
+                               openTask={openTask} />
                  )}
             </ListGroup>
         </Col>
