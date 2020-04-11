@@ -72,6 +72,7 @@ function TaskDetailsView(props) {
                       disabled={editDisabled}
                       value={taskDetails.description}
                       type="textarea"
+                      className=" textarea"
                       name="text"
                       id="exampleText"
                       onChange={(e) => inputDescrHandler(e.target.value)}

@@ -22,3 +22,14 @@
 .danger{
     color: #dc3545;
 }
+
+.textarea {
+    min-height: 250px;
+}
+
+.overflow-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 25ch;
+}

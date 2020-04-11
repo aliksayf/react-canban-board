@@ -6,7 +6,7 @@ import TaskCard from "./TaskCard";
 function StatusColumn (props) {
 
     const {
-        el,
+        name,
         idx,
         taskList,
         changeTaskStatus,
@@ -18,8 +18,8 @@ function StatusColumn (props) {
     return (
         <Col md='3' color={colors[idx]} className="px-md-1">
             <ListGroup>
-                <ListGroupItem color={colors[idx]} >
-                    {el}
+                <ListGroupItem color={colors[idx]}>
+                    <h5>{name}</h5>
                 </ListGroupItem>
                  {taskList.map(task => task.status === idx + 1 &&
                      <TaskCard key={task.id}

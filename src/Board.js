@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Container, Row} from 'reactstrap';
+import {Button, Col, Container, Row} from 'reactstrap';
 import {statusBlock, tasks} from './tasks';
 import NewTask from "./NewTask";
 import TaskDetailsView from "./TaskDetailsView";
@@ -54,11 +54,18 @@ function Board() {
 
     return (
         <Container className="themed-container" fluid="lg">
-            <Button color="primary" onClick={toggleNewTask}>New task</Button>
+            <Row>
+                <Col md='3' className=" px-md-1">
+                    <Button color="primary" onClick={toggleNewTask} className="float-left">New task</Button>
+                </Col>
+            </Row>
+            <Row>
+                <hr/>
+            </Row>
             <Row>
                 {statusBlock.map((el, idx) =>
                     <StatusColumn key={el}
-                                  el={el}
+                                  name={el}
                                   idx={idx}
                                   changeTaskStatus={changeTaskStatus}
                                   removeTask={removeTask}

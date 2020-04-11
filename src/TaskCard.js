@@ -46,12 +46,12 @@ const TaskCard = (props) => {
         <div>
             <ListGroupItem className="bg-light">
                 <Row className="pointer" onClick={onTaskClickHandler} color='danger'>
-                    <Col xs="2">
+                    <Col xs="1">
                         <FiAlertTriangle className={priorityColors[task.priority] + " text-xs-right"}/>
                     </Col>
-                    <Col lg="9">
-                        <Label className="pointer" onClick={onTaskClickHandler}>
-                            <strong>{task.name}</strong>
+                    <Col lg="10">
+                        <Label className="pointer overflow-name text-left" onClick={onTaskClickHandler}>
+                            <strong >{task.name}</strong>
                         </Label>
                         <p><i>details...</i></p>
                     </Col>
