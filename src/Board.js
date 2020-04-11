@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Col, Container, ListGroup, ListGroupItem, Row, Button} from 'reactstrap';
-import {colors, statusBlock, tasks} from './tasks';
+import {Button, Container, Row} from 'reactstrap';
+import {statusBlock, tasks} from './tasks';
 import NewTask from "./NewTask";
 import TaskDetailsView from "./TaskDetailsView";
 import StatusColumn from "./StatusColumn";
@@ -52,7 +52,6 @@ function Board() {
     const toggleNewTask = () => setModal(!modal);
 
 
-
     return (
         <Container className="themed-container" fluid="lg">
             <Button color="primary" onClick={toggleNewTask}>New task</Button>
@@ -63,7 +62,9 @@ function Board() {
                                   idx={idx}
                                   changeTaskStatus={changeTaskStatus}
                                   removeTask={removeTask}
+                                  setTaskDetails={setTaskDetails}
                                   openTask={openTask}
+                                  toggleDeleteConfirm={toggleDeleteConfirm}
                                   taskList={taskList}/>
                 )}
             </Row>
@@ -82,9 +83,9 @@ function Board() {
                              changeTaskValues={changeTaskValues}
                              openTaskView={openTaskView}/>
 
-             <DeleteConfirmModal toggleDeleteConfirm={toggleDeleteConfirm}
-                                 openDeleteConfirm={openDeleteConfirm}
-                                 removeTask={removeTask}/>
+            <DeleteConfirmModal toggleDeleteConfirm={toggleDeleteConfirm}
+                                openDeleteConfirm={openDeleteConfirm}
+                                removeTask={removeTask}/>
         </Container>
     );
 }

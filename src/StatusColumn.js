@@ -11,7 +11,8 @@ function StatusColumn (props) {
         taskList,
         changeTaskStatus,
         openTask,
-        removeTask
+        setTaskDetails,
+        toggleDeleteConfirm
     } = props;
 
     return (
@@ -24,7 +25,8 @@ function StatusColumn (props) {
                      <TaskCard key={task.id}
                                task={task}
                                idx={idx}
-                               removeTask={removeTask}
+                               toggleDeleteConfirm={toggleDeleteConfirm}
+                               setTaskDetails={setTaskDetails}
                                changeTaskStatus={changeTaskStatus}
                                openTask={openTask} />
                  )}

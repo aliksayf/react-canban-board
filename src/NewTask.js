@@ -1,18 +1,5 @@
 import React, {useState} from 'react';
-import {
-    Button,
-    Modal,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
-    Form,
-    FormGroup,
-    Label,
-    Input,
-    Col,
-    Alert
-} from 'reactstrap';
-import Badge from "reactstrap/es/Badge";
+import {Button, Col, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
 function NewTask(props) {
 
@@ -27,14 +14,14 @@ function NewTask(props) {
 
     const inputTaskName = (name) => {
         setNewTaskValues({...newTaskValues, name: name});
-        if(newTaskValues.name && newTaskValues.description) {
+        if (newTaskValues.name && newTaskValues.description) {
             setSubmitActive(true)
         }
     };
 
     const inputTaskDescription = (text) => {
         setNewTaskValues({...newTaskValues, description: text});
-        if(newTaskValues.name && newTaskValues.description) {
+        if (newTaskValues.name && newTaskValues.description) {
             setSubmitActive(true)
         }
     };
@@ -49,14 +36,14 @@ function NewTask(props) {
         toggleNewTask();
     };
 
-    const selectPriority = (value)  => {
+    const selectPriority = (value) => {
         setNewTaskValues({...newTaskValues, priority: value});
         console.log(newTaskValues)
     }
 
     return (
         <div>
-            <Modal isOpen={modal} toggle={toggle}>
+            <Modal isOpen={modal} toggle={toggle} className=' modal-big'>
                 <ModalHeader toggle={toggle}>Create new task</ModalHeader>
                 <ModalBody>
                     <Form>
@@ -90,10 +77,12 @@ function NewTask(props) {
                                 <Label className="float-right">Priority</Label>
                             </Col>
                             <Col sm="2">
-                                <Input type="select" name="select" id="exampleSelect" onChange={(e)=>selectPriority(e.target.value)}>
+                                <Input type="select" name="select" id="exampleSelect"
+                                       onChange={(e) => selectPriority(e.target.value)}>
                                     <option>Low</option>
                                     <option>Mid</option>
-                                    <option>High</option>>
+                                    <option>High</option>
+                                    >
                                 </Input>
                             </Col>
                         </FormGroup>
