@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9920064a472688d0fb7df9f028d7a814",
+    "revision": "230fd9a23b1303e009d8c0b0ab57d9b3",
     "url": "/react-canban-board/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-canban-board/static/css/2.de424728.chunk.css"
   },
   {
-    "revision": "8a65ca0989d9f6b91814",
-    "url": "/react-canban-board/static/css/main.6bbd6223.chunk.css"
+    "revision": "5b956b8eeecc4b646a43",
+    "url": "/react-canban-board/static/css/main.ec02a88d.chunk.css"
   },
   {
     "revision": "45627e31fb26200ceaa5",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-canban-board/static/js/2.133ef115.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8a65ca0989d9f6b91814",
-    "url": "/react-canban-board/static/js/main.a36f16f9.chunk.js"
+    "revision": "5b956b8eeecc4b646a43",
+    "url": "/react-canban-board/static/js/main.f58f6a3a.chunk.js"
   },
   {
     "revision": "05ef0c7171087846dd5e",

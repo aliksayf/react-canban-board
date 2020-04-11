@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/react-canban-board/precache-manifest.db5c777efef0a0433acc2fb6971a4523.js"
+  "/react-canban-board/precache-manifest.cfdae297d1d62bc26a8a574a3f896d45.js"
 );
 
 self.addEventListener('message', (event) => {
