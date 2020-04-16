@@ -9,6 +9,7 @@ const TaskCard = (props) => {
         idx,
         taskIdx,
         changeTaskStatus,
+        changeTaskQueue,
         openTask,
         toggleDeleteConfirm,
         setTaskDetails
@@ -33,6 +34,14 @@ const TaskCard = (props) => {
         changeTaskStatus(idx, taskIdx, -1);
     };
 
+    const buttonUptHandler = () => {
+        changeTaskQueue( idx, taskIdx, -1);
+    };
+
+    const buttonDownHandler = () => {
+        changeTaskQueue(idx, taskIdx, +1);
+    };
+
     const onTaskClickHandler = () => {
         openTask(task);
     };
@@ -46,15 +55,24 @@ const TaskCard = (props) => {
     return (
         <div>
             <ListGroupItem className="bg-light">
-                <Row className="pointer" onClick={onTaskClickHandler} color='danger'>
+                <Row
+                    // className="pointer" onClick={onTaskClickHandler}
+                    color='danger'>
                     <Col xs="1">
-                        <FiAlertTriangle className={priorityColors[task.priority] + " text-xs-right"}/>
+                        <Button
+                            size="sm"
+                            onClick={buttonUptHandler}>up</Button>
+                        <Button
+                            onClick={buttonDownHandler}
+                            size="sm">down</Button>
                     </Col>
                     <Col lg="10">
                         <Label className="pointer overflow-name text-left" onClick={onTaskClickHandler}>
                             <strong >{task.name}</strong>
                         </Label>
-                        <p><i>details...</i></p>
+                        <p>
+                        <FiAlertTriangle className={priorityColors[task.priority] + " text-xs-right"}/>
+                            <i>details...</i></p>
                     </Col>
                 </Row>
                 <Row>

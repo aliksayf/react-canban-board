@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Col, Container, Row} from 'reactstrap';
-import {statusBlock, tasks} from './tasks';
+import { tasks} from './tasks';
 import NewTask from "./NewTask";
 import TaskDetailsView from "./TaskDetailsView";
 import StatusColumn from "./StatusColumn";
@@ -36,8 +36,15 @@ function Board() {
         setTaskList(arr)
     };
 
+    const changeTaskQueue = (idx, taskIdx, diff) => {
+        const arr = [...taskList];
+        const movedTask = arr[idx].splice(taskIdx, 1);
+        arr[idx].splice(taskIdx + diff, 0, movedTask[0]);
+        setTaskList(arr)
+    };
+
     const changeTaskValues = (obj) => {
-        const changedTask = [...taskList].map(task => task.map(el => el.id === taskDetails.id ? el = {...obj} : el));
+        const changedTask = [...taskList].map(task => task.map(el => el.id === taskDetails.id ? {...obj} : el));
         setTaskList([...changedTask]);
     };
 
@@ -66,6 +73,7 @@ function Board() {
                     <StatusColumn key={idx}
                                   idx={idx}
                                   changeTaskStatus={changeTaskStatus}
+                                  changeTaskQueue={changeTaskQueue}
                                   removeTask={removeTask}
                                   setTaskDetails={setTaskDetails}
                                   openTask={openTask}

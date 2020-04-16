@@ -9,6 +9,7 @@ function StatusColumn (props) {
         idx,
         taskList,
         changeTaskStatus,
+        changeTaskQueue,
         openTask,
         setTaskDetails,
         toggleDeleteConfirm
@@ -29,6 +30,7 @@ function StatusColumn (props) {
                                toggleDeleteConfirm={toggleDeleteConfirm}
                                setTaskDetails={setTaskDetails}
                                changeTaskStatus={changeTaskStatus}
+                               changeTaskQueue={changeTaskQueue}
                                openTask={openTask} />
                  )}
             </ListGroup>
