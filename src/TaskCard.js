@@ -7,6 +7,7 @@ const TaskCard = (props) => {
     const {
         task,
         idx,
+        taskIdx,
         changeTaskStatus,
         openTask,
         toggleDeleteConfirm,
@@ -25,11 +26,11 @@ const TaskCard = (props) => {
     const rightButtonDisplays = (i) => i === 3 ? ' hidden' : '';
 
     const buttonRightHandler = () => {
-        changeTaskStatus(task.id, +1);
+        changeTaskStatus( idx, taskIdx, +1);
     };
 
     const buttonLeftHandler = () => {
-        changeTaskStatus(task.id, -1);
+        changeTaskStatus(idx, taskIdx, -1);
     };
 
     const onTaskClickHandler = () => {

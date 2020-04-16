@@ -7,7 +7,7 @@ import './custom.css';
 function App() {
     return (
         <StrictMode>
-            <h1 className="text-center display-5">Canban board</h1>
+            <h1 className="text-center display-5">Kanban board</h1>
             <Board/>
         </StrictMode>
     );

@@ -29,10 +29,11 @@ function Board() {
         toggleTaskDetail();
     };
 
-    const changeTaskStatus = (id, diff) => {
-        const changedTask = [...taskList]
-        changedTask.map(el => el.id === id ? (el.status += diff) : '');
-        setTaskList([...changedTask])
+    const changeTaskStatus = (idx, taskIdx, diff) => {
+        const arr = [...taskList];
+        const movedTask = arr[idx].splice(taskIdx, 1);
+        arr[idx + diff].push(movedTask[0]);
+        setTaskList(arr)
     };
 
     const changeTaskValues = (obj) => {
@@ -63,16 +64,15 @@ function Board() {
                 <hr/>
             </Row>
             <Row>
-                {statusBlock.map((el, idx) =>
-                    <StatusColumn key={el}
-                                  name={el}
+                {taskList.map((el, idx) =>
+                    <StatusColumn key={idx}
                                   idx={idx}
                                   changeTaskStatus={changeTaskStatus}
                                   removeTask={removeTask}
                                   setTaskDetails={setTaskDetails}
                                   openTask={openTask}
                                   toggleDeleteConfirm={toggleDeleteConfirm}
-                                  taskList={taskList}/>
+                                  taskList={el}/>
                 )}
             </Row>
 
