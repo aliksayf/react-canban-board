@@ -37,14 +37,12 @@ function Board() {
     };
 
     const changeTaskValues = (obj) => {
-        let index = taskList.findIndex(x => x.id === obj.id);
-        const changedTask = [...taskList]
-        changedTask.splice(index, 1, obj);
+        const changedTask = [...taskList].map(task => task.map(el => el.id === taskDetails.id ? el = {...obj} : el));
         setTaskList([...changedTask]);
     };
 
     const removeTask = () => {
-        const changedTaskList = [...taskList].filter(el => el.id !== taskDetails.id);
+        const changedTaskList = [...taskList].map(task => task.filter(el => el.id !== taskDetails.id));
         setTaskList(changedTaskList);
     };
 
