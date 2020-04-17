@@ -23,6 +23,10 @@
     color: #dc3545;
 }
 
+.inactive{
+    color: lightgrey;
+}
+
 .textarea {
     min-height: 250px;
 }
