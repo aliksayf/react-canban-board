@@ -4,6 +4,8 @@ import {Button, Col, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFoote
 function NewGroupModal(props) {
 
     const {
+        taskList,
+        setTaskList,
         taskGroup,
         setTaskGroup,
         newGroupModal,
@@ -23,9 +25,12 @@ function NewGroupModal(props) {
 
     const saveNewGroup = () => {
         const newTemp = {...taskGroup};
+        const newTask = [...taskList];
+        newTask.push([]);
         newTemp.status.push(newGroupName);
         newTemp.colors.push(newGroupName);
         setTaskGroup({...newTemp});
+        setTaskList(newTask);
         toggle();
     };
 
@@ -58,20 +63,20 @@ function NewGroupModal(props) {
                                     onChange={(e) => inputGroupName(e.target.value)}/>
                             </Col>
                         </FormGroup>
-                        <FormGroup row>
-                            <Col sm="2">
-                                <Label className="float-right">Priority</Label>
-                            </Col>
-                            {/*<Col sm="2">*/}
-                            {/*    <Input type="select" name="select" id="exampleSelect"*/}
-                            {/*           onChange={(e) => selectPriority(e.target.value)}>*/}
-                            {/*        <option>Low</option>*/}
-                            {/*        <option>Mid</option>*/}
-                            {/*        <option>High</option>*/}
-                            {/*        >*/}
-                            {/*    </Input>*/}
-                            {/*</Col>*/}
-                        </FormGroup>
+                        {/*<FormGroup row>*/}
+                        {/*    <Col sm="2">*/}
+                        {/*        <Label className="float-right">Priority</Label>*/}
+                        {/*    </Col>*/}
+                        {/*    <Col sm="2">*/}
+                        {/*        <Input type="select" name="select" id="exampleSelect"*/}
+                        {/*               onChange={(e) => selectPriority(e.target.value)}>*/}
+                        {/*            <option>Low</option>*/}
+                        {/*            <option>Mid</option>*/}
+                        {/*            <option>High</option>*/}
+                        {/*            >*/}
+                        {/*        </Input>*/}
+                        {/*    </Col>*/}
+                        {/*</FormGroup>*/}
                     </Form>
                 </ModalBody>
                 <ModalFooter>

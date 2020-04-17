@@ -6,11 +6,12 @@ import TaskDetailsView from "./TaskDetailsView";
 import StatusColumn from "./StatusColumn";
 import DeleteConfirmModal from "./DeleteConfirmModal";
 import NewGroupModal from "./NewGroupModal";
+import ManageGroupsModal from "./ManageGroupsModal";
 
 
 function Board() {
 
-    const emptyFields = {name: '', description: ''}
+    const emptyFields = {name: '', description: ''};
     const [newTaskValues, setNewTaskValues] = useState(emptyFields);
     const [taskList, setTaskList] = useState([...tasks]);
     const [modal, setModal] = useState(false);
@@ -19,6 +20,8 @@ function Board() {
     const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
     const [taskDetails, setTaskDetails] = useState({});
     const [taskGroup, setTaskGroup] = useState({status: [...status], colors: [...colors]});
+    const [manageModal, setManageModal] = useState(false);
+
 
     const addNewTask = (obj) => {
         const arr = [...taskList];
@@ -57,6 +60,7 @@ function Board() {
     };
 
     const toggleTaskDetail = () => setOpenTaskView(!openTaskView);
+    const toggleManageGroup = () => setManageModal(!manageModal);
     const toggleNewGroupModal = () => setNewGroupModal(true);
     const toggleDeleteConfirm = () => setOpenDeleteConfirm(!openDeleteConfirm);
     const toggleNewTask = () => setModal(!modal);
@@ -65,11 +69,12 @@ function Board() {
     return (
         <Container className="themed-container" fluid="lg">
             <Row>
-                <Col md='3' className=" px-md-1 ">
+                <Col md='4' className=" px-md-1 ">
                     <Button color="primary" onClick={toggleNewTask} className="float-left mr-1">New task</Button>
-                    <Button color="primary" onClick={toggleNewGroupModal} className="float-left">New group</Button>
+                    <Button color="primary" onClick={toggleNewGroupModal} className="float-left mr-1">New group</Button>
+                    <Button color="primary" onClick={toggleManageGroup} className="float-left mr-1">Manage groups</Button>
                 </Col>
-                <Col md='3' className=" px-md-1">
+                <Col md='2' className=" px-md-1">
                 </Col>
                 <Col md='6' className=" px-md-1">
                     <a href='https://github.com/aliksayf/react-kanban-board/issues' target="_blank">
@@ -104,6 +109,8 @@ function Board() {
             <NewGroupModal
                 taskGroup={taskGroup}
                 setTaskGroup={setTaskGroup}
+                taskList={taskList}
+                setTaskList={setTaskList}
                 newGroupModal={newGroupModal}
                 setNewGroupModal={setNewGroupModal}/>
 
@@ -115,6 +122,14 @@ function Board() {
                              removeTask={removeTask}
                              changeTaskValues={changeTaskValues}
                              openTaskView={openTaskView}/>
+
+            <ManageGroupsModal taskGroup={taskGroup}
+                               setTaskGroup={setTaskGroup}
+                               taskList={taskList}
+                               setTaskList={setTaskList}
+                               manageModal={manageModal}
+                               setManageModal={setManageModal}
+            />
 
             <DeleteConfirmModal toggleDeleteConfirm={toggleDeleteConfirm}
                                 openDeleteConfirm={openDeleteConfirm}
