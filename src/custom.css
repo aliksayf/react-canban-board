@@ -31,5 +31,5 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 25ch;
+    max-width: 20ch;
 }

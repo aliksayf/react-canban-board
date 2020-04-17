@@ -1,5 +1,5 @@
 import React from 'react';
-import {FiAlertTriangle, FiChevronsLeft, FiChevronsRight, FiTrash2} from "react-icons/fi";
+import {FiAlertTriangle, FiChevronsLeft, FiChevronsRight, FiTrash2, FiChevronUp, FiChevronDown} from "react-icons/fi";
 import {Button, Col, Label, ListGroupItem, Row} from "reactstrap";
 
 const TaskCard = (props) => {
@@ -57,14 +57,24 @@ const TaskCard = (props) => {
             <ListGroupItem className="bg-light">
                 <Row
                     // className="pointer" onClick={onTaskClickHandler}
-                    color='danger'>
-                    <Col xs="1">
-                        <Button
+                    >
+                    <Col xs="2">
+                        <button
+                            className="border-0"
+                            color="secondary"
+                            outline
                             size="sm"
-                            onClick={buttonUptHandler}>up</Button>
-                        <Button
+                            onClick={buttonUptHandler}>
+                            <FiChevronUp/>
+                        </button>
+                        <button
+                            className="border-0"
+                            color="secondary"
+                            outline
                             onClick={buttonDownHandler}
-                            size="sm">down</Button>
+                            size="sm">
+                            <FiChevronDown/>
+                        </button>
                     </Col>
                     <Col lg="10">
                         <Label className="pointer overflow-name text-left" onClick={onTaskClickHandler}>
@@ -72,7 +82,7 @@ const TaskCard = (props) => {
                         </Label>
                         <p>
                         <FiAlertTriangle className={priorityColors[task.priority] + " text-xs-right"}/>
-                            <i>details...</i></p>
+                            <i> details...</i></p>
                     </Col>
                 </Row>
                 <Row>
@@ -80,7 +90,6 @@ const TaskCard = (props) => {
                         <Button
                             color="secondary"
                             outline
-                            pill
                             size="sm"
                             onClick={buttonLeftHandler}
                             className={leftButtonDisplays(idx) + ' pointer float-left'}><FiChevronsLeft/></Button>
@@ -95,7 +104,6 @@ const TaskCard = (props) => {
                         <Button
                             color="secondary"
                             outline
-                            pill
                             size="sm"
                             onClick={buttonRightHandler}
                             className={rightButtonDisplays(idx) + ' pointer float-right'}><FiChevronsRight/></Button>

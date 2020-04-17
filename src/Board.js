@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {Button, Col, Container, Row} from 'reactstrap';
-import { tasks} from './tasks';
+import { tasks, status, colors } from './tasks';
 import NewTask from "./NewTask";
 import TaskDetailsView from "./TaskDetailsView";
 import StatusColumn from "./StatusColumn";
 import DeleteConfirmModal from "./DeleteConfirmModal";
+import NewGroupModal from "./NewGroupModal";
 
 
 function Board() {
@@ -13,9 +14,11 @@ function Board() {
     const [newTaskValues, setNewTaskValues] = useState(emptyFields);
     const [taskList, setTaskList] = useState([...tasks]);
     const [modal, setModal] = useState(false);
+    const [newGroupModal, setNewGroupModal] = useState(false);
     const [openTaskView, setOpenTaskView] = useState(false);
     const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
     const [taskDetails, setTaskDetails] = useState({});
+    const [taskGroup, setTaskGroup] = useState({status: [...status], colors: [...colors]});
 
     const addNewTask = (obj) => {
         const arr = [...taskList];
@@ -54,6 +57,7 @@ function Board() {
     };
 
     const toggleTaskDetail = () => setOpenTaskView(!openTaskView);
+    const toggleNewGroupModal = () => setNewGroupModal(true);
     const toggleDeleteConfirm = () => setOpenDeleteConfirm(!openDeleteConfirm);
     const toggleNewTask = () => setModal(!modal);
 
@@ -61,24 +65,33 @@ function Board() {
     return (
         <Container className="themed-container" fluid="lg">
             <Row>
+                <Col md='3' className=" px-md-1 ">
+                    <Button color="primary" onClick={toggleNewTask} className="float-left mr-1">New task</Button>
+                    <Button color="primary" onClick={toggleNewGroupModal} className="float-left">New group</Button>
+                </Col>
                 <Col md='3' className=" px-md-1">
-                    <Button color="primary" onClick={toggleNewTask} className="float-left">New task</Button>
+                </Col>
+                <Col md='6' className=" px-md-1">
+                    <a href='https://github.com/aliksayf/react-kanban-board/issues' target="_blank">
+                        <Button color="secondary" outline className="float-right">Report issue</Button>
+                    </a>
                 </Col>
             </Row>
             <Row>
                 <hr/>
             </Row>
             <Row>
-                {taskList.map((el, idx) =>
+                {taskGroup.status.map((el, idx) =>
                     <StatusColumn key={idx}
                                   idx={idx}
+                                  name={el}
                                   changeTaskStatus={changeTaskStatus}
                                   changeTaskQueue={changeTaskQueue}
                                   removeTask={removeTask}
                                   setTaskDetails={setTaskDetails}
                                   openTask={openTask}
                                   toggleDeleteConfirm={toggleDeleteConfirm}
-                                  taskList={el}/>
+                                  taskList={taskList[idx]}/>
                 )}
             </Row>
 
@@ -87,6 +100,13 @@ function Board() {
                      newTaskValues={newTaskValues}
                      setNewTaskValues={setNewTaskValues}
                      modal={modal}/>
+
+            <NewGroupModal
+                taskGroup={taskGroup}
+                setTaskGroup={setTaskGroup}
+                newGroupModal={newGroupModal}
+                setNewGroupModal={setNewGroupModal}/>
+
             <TaskDetailsView addNewTask={addNewTask}
                              toggle={toggleTaskDetail}
                              taskDetails={taskDetails}

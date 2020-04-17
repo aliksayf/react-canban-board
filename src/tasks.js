@@ -1,4 +1,4 @@
-export const colors = ["danger", "warning", "info", "success"];
+export const colors = ['danger', 'warning', 'info', 'success'];
 export const status = ['Todo', 'In Progress', 'Review', 'Done']
 export const tasks = [
         [

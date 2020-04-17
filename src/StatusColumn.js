@@ -1,12 +1,13 @@
 import React from 'react';
 import {Col, ListGroup, ListGroupItem } from 'reactstrap';
-import {colors, status} from "./tasks";
+import {colors} from "./tasks";
 import TaskCard from "./TaskCard";
 
 function StatusColumn (props) {
 
     const {
         idx,
+        name,
         taskList,
         changeTaskStatus,
         changeTaskQueue,
@@ -16,12 +17,12 @@ function StatusColumn (props) {
     } = props;
 
     return (
-        <Col md='3' color={colors[idx]} className="px-md-1">
+        <Col md='3' className="px-md-1 border">
             <ListGroup>
-                <ListGroupItem color={colors[idx]}>
-                    <h5>{status[idx]}</h5>
+                <ListGroupItem color={colors[idx]} className="border-top">
+                    <h5>{name}</h5>
                 </ListGroupItem>
-                 {taskList.map((task, taskIdx) =>
+                 {taskList && taskList.map((task, taskIdx) =>
                      <TaskCard key={task.id}
                                task={task}
                                id={task.id}
