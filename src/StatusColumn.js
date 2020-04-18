@@ -1,6 +1,5 @@
 import React from 'react';
 import {Col, ListGroup, ListGroupItem } from 'reactstrap';
-import {colors} from "./tasks";
 import TaskCard from "./TaskCard";
 
 function StatusColumn (props) {
@@ -9,6 +8,7 @@ function StatusColumn (props) {
         idx,
         name,
         taskList,
+        taskGroup,
         changeTaskStatus,
         changeTaskQueue,
         openTask,
@@ -17,9 +17,9 @@ function StatusColumn (props) {
     } = props;
 
     return (
-        <Col md='3' className="px-md-1 border">
+        <Col md='3' className="px-md-1 border mt-3" >
             <ListGroup>
-                <ListGroupItem color={colors[idx]} className="border-top">
+                <ListGroupItem color={taskGroup.colors[idx]} className="border-top">
                     <h5>{name}</h5>
                 </ListGroupItem>
                  {taskList && taskList.map((task, taskIdx) =>
@@ -27,6 +27,7 @@ function StatusColumn (props) {
                                task={task}
                                id={task.id}
                                idx={idx}
+                               taskGroup={taskGroup}
                                taskIdx={taskIdx}
                                toggleDeleteConfirm={toggleDeleteConfirm}
                                setTaskDetails={setTaskDetails}

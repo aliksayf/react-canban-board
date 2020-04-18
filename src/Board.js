@@ -83,9 +83,6 @@ function Board() {
                 </Col>
             </Row>
             <Row>
-                <hr/>
-            </Row>
-            <Row>
                 {taskGroup.status.map((el, idx) =>
                     <StatusColumn key={idx}
                                   idx={idx}
@@ -96,6 +93,7 @@ function Board() {
                                   setTaskDetails={setTaskDetails}
                                   openTask={openTask}
                                   toggleDeleteConfirm={toggleDeleteConfirm}
+                                  taskGroup={taskGroup}
                                   taskList={taskList[idx]}/>
                 )}
             </Row>

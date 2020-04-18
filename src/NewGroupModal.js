@@ -28,7 +28,7 @@ function NewGroupModal(props) {
         const newTask = [...taskList];
         newTask.push([]);
         newTemp.status.push(newGroupName);
-        newTemp.colors.push(newGroupName);
+        newTemp.colors.push('secondary');
         setTaskGroup({...newTemp});
         setTaskList(newTask);
         toggle();
@@ -39,11 +39,6 @@ function NewGroupModal(props) {
         setNewGroupModal(!newGroupModal);
         setSubmitActive(false)
     };
-
-    // const selectPriority = (value) => {
-    //     setNewTaskValues({...newTaskValues, priority: value});
-    //     console.log(newTaskValues)
-    // }
 
     return (
         <div>

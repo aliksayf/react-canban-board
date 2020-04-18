@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Button, Col, ListGroup, ListGroupItem, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
+import React from 'react';
+import {Button, ListGroup,Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import GroupItem from "./GroupItem";
 
 function ManageGroupsModal(props) {
@@ -9,8 +9,8 @@ function ManageGroupsModal(props) {
         setTaskList,
         taskGroup,
         setTaskGroup,
-        newGroupModal,
-        setNewGroupModal,
+        // newGroupModal,
+        // setNewGroupModal,
         manageModal,
         setManageModal
     } = props;
@@ -30,6 +30,17 @@ function ManageGroupsModal(props) {
         console.log(arr1, arr2, arr3, idx + dif)
     };
 
+    const removeGroup = (idx) => {
+        const arr1 = [...taskGroup.status];
+        const arr2 = [...taskGroup.colors];
+        const arr3 = [...taskList];
+        arr1.splice(idx, 1)
+        arr2.splice(idx, 1)
+        arr3.splice(idx, 1)
+        setTaskGroup({status: arr1, colors: arr2})
+        setTaskList(arr3)
+    };
+
     const toggle = () => {
         setManageModal(!manageModal);
     };
@@ -46,6 +57,7 @@ function ManageGroupsModal(props) {
                                 el={el}
                                 idx={i}
                                 changeOrder={changeOrder}
+                                removeGroup={removeGroup}
                                 taskGroup={taskGroup}
                                 color={taskGroup.colors[i]}/>
                         )}
@@ -53,7 +65,7 @@ function ManageGroupsModal(props) {
                 </ModalBody>
                 <ModalFooter>
                     {/*<Button color="primary" onClick={saveNewGroup} disabled={!submitActive}>Create</Button>{' '}*/}
-                    <Button color="secondary" onClick={toggle}>Cancel</Button>
+                    <Button color="secondary" onClick={toggle}>Close</Button>
                 </ModalFooter>
             </Modal>
         </div>

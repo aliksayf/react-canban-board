@@ -13,7 +13,6 @@ function TaskDetailsView(props) {
   } = props;
 
   const [editDisabled, setEditDisabled] = useState(true);
-  // const [taskValues, setTaskValues] = useState({...props.taskDetails});
 
   const inputNameHandler = (val) => {
     setTaskDetails({...taskDetails, name : val })

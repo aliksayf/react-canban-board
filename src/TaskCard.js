@@ -11,6 +11,7 @@ const TaskCard = (props) => {
         changeTaskStatus,
         changeTaskQueue,
         openTask,
+        taskGroup,
         toggleDeleteConfirm,
         setTaskDetails
     } = props;
@@ -24,7 +25,7 @@ const TaskCard = (props) => {
     console.log()
 
     const leftButtonDisplays = (i) => i === 0 ? ' hidden' : '';
-    const rightButtonDisplays = (i) => i === 3 ? ' hidden' : '';
+    const rightButtonDisplays = (i) => i === taskGroup.status.length - 1 ? ' hidden' : '';
 
     const buttonRightHandler = () => {
         changeTaskStatus( idx, taskIdx, +1);
@@ -62,17 +63,13 @@ const TaskCard = (props) => {
                         <button
                             className="border-0"
                             color="secondary"
-                            outline
-                            size="sm"
                             onClick={buttonUptHandler}>
                             <FiChevronUp/>
                         </button>
                         <button
                             className="border-0"
                             color="secondary"
-                            outline
-                            onClick={buttonDownHandler}
-                            size="sm">
+                            onClick={buttonDownHandler}>
                             <FiChevronDown/>
                         </button>
                     </Col>
