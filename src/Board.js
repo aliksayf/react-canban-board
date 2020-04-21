@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
 import {Button, Col, Container, Row, ListGroup, ListGroupItem} from 'reactstrap';
-import { tasks } from './tasks';
+import {tasks} from './tasks';
 import NewTask from "./NewTask";
 import TaskDetailsView from "./TaskDetailsView";
 import StatusColumn from "./StatusColumn";
@@ -61,6 +61,32 @@ function Board() {
         setTaskList(changedTaskList);
     };
 
+    const onDragEnd = (result, taskList, setTaskList) => {
+        if (!result.destination) return;
+        const {source, destination} = result;
+
+        if (source.droppableId !== destination.droppableId) {
+            const sourceColumn = taskList[source.droppableId];
+            const destColumn = taskList[destination.droppableId];
+            const sourceItems = [...sourceColumn.items];
+            const destItems = [...destColumn.items];
+            console.log('dest', destItems)
+            const [removed] = sourceItems.splice(source.index, 1);
+            destItems.splice(destination.index, 0, removed);
+            setTaskList({
+                ...taskList,
+                [source.droppableId]: {...sourceColumn, items: sourceItems},
+                [destination.droppableId]: {...destColumn, items: destItems}
+            });
+        } else {
+            const column = taskList[source.droppableId];
+            const copiedItems = [...column.items];
+            const [removed] = copiedItems.splice(source.index, 1);
+            copiedItems.splice(destination.index, 0, removed);
+            setTaskList({...taskList, [source.droppableId]: {...column, items: copiedItems}});
+        }
+    };
+
     const toggleTaskDetail = () => setOpenTaskView(!openTaskView);
     const toggleManageGroup = () => setManageModal(!manageModal);
     const toggleNewGroupModal = () => setNewGroupModal(true);
@@ -70,7 +96,7 @@ function Board() {
 
     return (
         <Container className="themed-container" fluid="lg">
-            <Row>
+            <Row className="mb-3" >
                 <Col md='4' className=" px-md-1 ">
                     <Button color="primary" onClick={toggleNewTask} className="float-left mr-1">New task</Button>
                     <Button color="primary" onClick={toggleNewGroupModal} className="float-left mr-1">New group</Button>
@@ -85,57 +111,62 @@ function Board() {
                     </a>
                 </Col>
             </Row>
-            <DragDropContext>
-                <Row>
+            <Row>
+                <DragDropContext onDragEnd={result => onDragEnd(result, taskList, setTaskList)}>
                     {Object.entries(taskList).map(([id, column]) => {
                         return (
-                            <Droppable droppableId={id} key={id}>
-                                {(provided, snapshot) => {
-                                    return (
-                                        <div
-                                            {...provided.droppableProps}
-                                            ref={provided.innerRef}
-                                            color={column.color}
-                                            column={column}
-                                            changeTaskStatus={changeTaskStatus}
-                                            changeTaskQueue={changeTaskQueue}
-                                            removeTask={removeTask}
-                                            setTaskDetails={setTaskDetails}
-                                            openTask={openTask}
-                                            toggleDeleteConfirm={toggleDeleteConfirm}
-                                        >
-                                            <ListGroupItem color={column.color}><h5>{column.name}</h5></ListGroupItem>
-                                            {column.items.map((item, index) => {
-                                                return (
-                                                    <Draggable key={item.id} draggableId={item.id} index={index}>
-                                                        {(provided, snapshot) => {
-                                                            return (
-                                                                <div ref={provided.innerRef}
-                                                                     {...provided.draggableProps}
-                                                                     {...provided.dragHandleProps}
-                                                                     style={{
-                                                                         userSelect: 'none',
-                                                                         margin: '0 0 8px 0',
-                                                                         minHeight: '50px',
-                                                                         ...provided.draggableProps.style
-                                                                     }}
-                                                                >
-                                                                    <TaskCard task={item}/>
-                                                                </div>
-                                                            )
-                                                        }}
-                                                    </Draggable>
-                                                )
-                                            })}
-                                            {provided.placeholder}
-                                        </div>
-                                    )
-                                }}
-                            </Droppable>
+                            <ListGroup className="col px-md-1">
+                                <ListGroupItem color={column.color} className=" mb-2"><h5>{column.name}</h5></ListGroupItem>
+                                {/*<div>*/}
+                                    <Droppable droppableId={id} key={id}>
+                                        {(provided, snapshot) => {
+                                            return (
+                                                <div
+                                                    {...provided.droppableProps}
+                                                    ref={provided.innerRef}
+                                                    color={column.color}
+                                                    column={column}
+                                                    changeTaskStatus={changeTaskStatus}
+                                                    changeTaskQueue={changeTaskQueue}
+                                                    removeTask={removeTask}
+                                                    setTaskDetails={setTaskDetails}
+                                                    openTask={openTask}
+                                                    toggleDeleteConfirm={toggleDeleteConfirm}
+                                                >
+                                                    {column.items.map((item, index) => {
+                                                        return (
+                                                            <Draggable key={item.id} draggableId={item.id}
+                                                                       index={index}>
+                                                                {(provided, snapshot) => {
+                                                                    return (
+                                                                        <div ref={provided.innerRef}
+                                                                             {...provided.draggableProps}
+                                                                             {...provided.dragHandleProps}
+                                                                             style={{
+                                                                                 userSelect: 'none',
+                                                                                 margin: '0 0 8px 0',
+                                                                                 minHeight: '50px',
+                                                                                 ...provided.draggableProps.style
+                                                                             }}
+                                                                        >
+                                                                            <TaskCard task={item}/>
+                                                                        </div>
+                                                                    )
+                                                                }}
+                                                            </Draggable>
+                                                        )
+                                                    })}
+                                                    {provided.placeholder}
+                                                </div>
+                                            )
+                                        }}
+                                    </Droppable>
+                                {/*</div>*/}
+                            </ListGroup>
                         )
                     })}
-                </Row>
-            </DragDropContext>
+                </DragDropContext>
+            </Row>
 
 
             {/*<NewTask addNewTask={addNewTask}*/}

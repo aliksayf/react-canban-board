@@ -1,8 +1,7 @@
 import {uuid} from 'uuidv4';
 
-export const tasks = [
-    {
-        id: uuid(),
+export const tasks = {
+    [uuid()]: {
         name: 'Todo',
         color: 'danger',
         items: [
@@ -48,8 +47,7 @@ export const tasks = [
             }
         ]
     },
-    {
-        id: uuid(),
+    [uuid()]: {
         name: 'In Progress',
         color: 'warning',
         items: [
@@ -93,60 +91,58 @@ export const tasks = [
             }
         ]
     },
-    {
-        id: uuid(),
+    [uuid()]: {
         name: 'Review',
         color: 'info',
         items: [
-        {
-            id: uuid(),
-            name: 'Remove item functionality',
-            description: 'Lists\n' +
-                'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n' +
-                'Aliquam tincidunt mauris eu risus.\n' +
-                'Vestibulum auctor dapibus neque.\n' +
-                'Nunc dignissim risus id metus.\n' +
-                'Cras ornare tristique elit.\n' +
-                'Vivamus vestibulum ntulla nec ante.\n' +
-                'Praesent placerat risus quis eros.\n' +
-                'Fusce pellentesque suscipit nibh.\n' +
-                'Integer vitae libero ac risus egestas placerat.\n' +
-                'Vestibulum commodo felis quis tortor.\n' +
-                'Ut aliquam sollicitudin leo.\n' +
-                'Cras iaculis ultricies nulla.\n' +
-                'Donec quis dui at dolor tempor interdum.',
-            status: 3,
-            priority: 'High'
-        }
+            {
+                id: uuid(),
+                name: 'Remove item functionality',
+                description: 'Lists\n' +
+                    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n' +
+                    'Aliquam tincidunt mauris eu risus.\n' +
+                    'Vestibulum auctor dapibus neque.\n' +
+                    'Nunc dignissim risus id metus.\n' +
+                    'Cras ornare tristique elit.\n' +
+                    'Vivamus vestibulum ntulla nec ante.\n' +
+                    'Praesent placerat risus quis eros.\n' +
+                    'Fusce pellentesque suscipit nibh.\n' +
+                    'Integer vitae libero ac risus egestas placerat.\n' +
+                    'Vestibulum commodo felis quis tortor.\n' +
+                    'Ut aliquam sollicitudin leo.\n' +
+                    'Cras iaculis ultricies nulla.\n' +
+                    'Donec quis dui at dolor tempor interdum.',
+                status: 3,
+                priority: 'High'
+            }
         ]
     },
-    {
-      id: uuid(),
-      name: 'Done',
-      color: 'success',
-      items: [
-        {
-            id: uuid(),
-            name: 'Create new task file',
-            description: 'Lists\n' +
-                'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n' +
-                'Aliquam tincidunt mauris eu risus.\n' +
-                'Vestibulum auctor dapibus neque.\n' +
-                'Nunc dignissim risus id metus.\n' +
-                'Cras ornare tristique elit.\n' +
-                'Vivamus vestibulum ntulla nec ante.\n' +
-                'Praesent placerat risus quis eros.\n' +
-                'Fusce pellentesque suscipit nibh.\n' +
-                'Integer vitae libero ac risus egestas placerat.\n' +
-                'Vestibulum commodo felis quis tortor.\n' +
-                'Ut aliquam sollicitudin leo.\n' +
-                'Cras iaculis ultricies nulla.\n' +
-                'Donec quis dui at dolor tempor interdum.',
-            status: 4,
-            priority: 'Low'
-        }
-    ]
+    [uuid()]: {
+        name: 'Done',
+        color: 'success',
+        items: [
+            {
+                id: uuid(),
+                name: 'Create new task file',
+                description: 'Lists\n' +
+                    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n' +
+                    'Aliquam tincidunt mauris eu risus.\n' +
+                    'Vestibulum auctor dapibus neque.\n' +
+                    'Nunc dignissim risus id metus.\n' +
+                    'Cras ornare tristique elit.\n' +
+                    'Vivamus vestibulum ntulla nec ante.\n' +
+                    'Praesent placerat risus quis eros.\n' +
+                    'Fusce pellentesque suscipit nibh.\n' +
+                    'Integer vitae libero ac risus egestas placerat.\n' +
+                    'Vestibulum commodo felis quis tortor.\n' +
+                    'Ut aliquam sollicitudin leo.\n' +
+                    'Cras iaculis ultricies nulla.\n' +
+                    'Donec quis dui at dolor tempor interdum.',
+                status: 4,
+                priority: 'Low'
+            }
+        ]
     }
-];
+};
 
 

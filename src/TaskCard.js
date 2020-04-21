@@ -61,18 +61,18 @@ const TaskCard = (props) => {
                     // className="pointer" onClick={onTaskClickHandler}
                     >
                     <Col xs="2">
-                        <button
-                            className="border-0"
-                            color="secondary"
-                            onClick={buttonUptHandler}>
-                            <FiChevronUp/>
-                        </button>
-                        <button
-                            className="border-0"
-                            color="secondary"
-                            onClick={buttonDownHandler}>
-                            <FiChevronDown/>
-                        </button>
+                        {/*<button*/}
+                        {/*    className="border-0"*/}
+                        {/*    color="secondary"*/}
+                        {/*    onClick={buttonUptHandler}>*/}
+                        {/*    <FiChevronUp/>*/}
+                        {/*</button>*/}
+                        {/*<button*/}
+                        {/*    className="border-0"*/}
+                        {/*    color="secondary"*/}
+                        {/*    onClick={buttonDownHandler}>*/}
+                        {/*    <FiChevronDown/>*/}
+                        {/*</button>*/}
                     </Col>
                     <Col lg="10">
                         <Label className="pointer overflow-name text-left" onClick={onTaskClickHandler}>
@@ -83,30 +83,30 @@ const TaskCard = (props) => {
                             <i> details...</i></p>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>
-                        <Button
-                            color="secondary"
-                            outline
-                            size="sm"
-                            onClick={buttonLeftHandler}
-                            className={leftButtonDisplays(idx) + ' pointer float-left'}><FiChevronsLeft/></Button>
-                    </Col>
-                    <Col>
-                        <Col>
-                            <Button onClick={deleteHandler} pill className='float-right' size="sm"
-                                    color='danger'><FiTrash2/></Button>
-                        </Col>
-                    </Col>
-                    <Col>
-                        <Button
-                            color="secondary"
-                            outline
-                            size="sm"
-                            onClick={buttonRightHandler}
-                            className={rightButtonDisplays(idx) + ' pointer float-right'}><FiChevronsRight/></Button>
-                    </Col>
-                </Row>
+                {/*<Row>*/}
+                {/*    <Col>*/}
+                {/*        <Button*/}
+                {/*            color="secondary"*/}
+                {/*            outline*/}
+                {/*            size="sm"*/}
+                {/*            onClick={buttonLeftHandler}*/}
+                {/*            className={leftButtonDisplays(idx) + ' pointer float-left'}><FiChevronsLeft/></Button>*/}
+                {/*    </Col>*/}
+                {/*    <Col>*/}
+                {/*        <Col>*/}
+                {/*            <Button onClick={deleteHandler} pill className='float-right' size="sm"*/}
+                {/*                    color='danger'><FiTrash2/></Button>*/}
+                {/*        </Col>*/}
+                {/*    </Col>*/}
+                {/*    <Col>*/}
+                {/*        <Button*/}
+                {/*            color="secondary"*/}
+                {/*            outline*/}
+                {/*            size="sm"*/}
+                {/*            onClick={buttonRightHandler}*/}
+                {/*            className={rightButtonDisplays(idx) + ' pointer float-right'}><FiChevronsRight/></Button>*/}
+                {/*    </Col>*/}
+                {/*</Row>*/}
             </ListGroupItem>
         </div>
     );
