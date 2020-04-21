@@ -1,4 +1,5 @@
 import React from 'react';
+import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
 import {FiAlertTriangle, FiChevronsLeft, FiChevronsRight, FiTrash2, FiChevronUp, FiChevronDown} from "react-icons/fi";
 import {Button, Col, Label, ListGroupItem, Row} from "reactstrap";
 
@@ -11,7 +12,7 @@ const TaskCard = (props) => {
         changeTaskStatus,
         changeTaskQueue,
         openTask,
-        taskGroup,
+        tasks,
         toggleDeleteConfirm,
         setTaskDetails
     } = props;
@@ -25,7 +26,7 @@ const TaskCard = (props) => {
     console.log()
 
     const leftButtonDisplays = (i) => i === 0 ? ' hidden' : '';
-    const rightButtonDisplays = (i) => i === taskGroup.status.length - 1 ? ' hidden' : '';
+    const rightButtonDisplays = (i) => i === 1 ? ' hidden' : '';
 
     const buttonRightHandler = () => {
         changeTaskStatus( idx, taskIdx, +1);
