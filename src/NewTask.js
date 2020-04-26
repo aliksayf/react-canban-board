@@ -4,6 +4,8 @@ import {Button, Col, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFoote
 function NewTask(props) {
 
     const {
+        taskDetails,
+        setTaskDetails,
         toggleNewTask,
         modal,
     } = props;
@@ -13,32 +15,32 @@ function NewTask(props) {
     const [submitActive, setSubmitActive] = useState(false)
 
     const inputTaskName = (name) => {
-        setNewTaskValues({...newTaskValues, name: name});
-        if (newTaskValues.name && newTaskValues.description) {
+        setTaskDetails({...taskDetails, name: name});
+        if (taskDetails.name && taskDetails.description) {
             setSubmitActive(true)
         }
     };
 
     const inputTaskDescription = (text) => {
-        setNewTaskValues({...newTaskValues, description: text});
-        if (newTaskValues.name && newTaskValues.description) {
+        setTaskDetails({...taskDetails, description: text});
+        if (taskDetails.name && taskDetails.description) {
             setSubmitActive(true)
         }
     };
 
     const saveNewTask = () => {
-        props.addNewTask({...newTaskValues, status: 1, id: Math.random()});
-        setNewTaskValues(emptyFields);
+        props.addNewTask({...taskDetails, status: 1, id: Math.random()});
+        setTaskDetails(emptyFields);
     };
 
     const toggle = () => {
-        setNewTaskValues(emptyFields);
+        setTaskDetails(emptyFields);
         toggleNewTask();
     };
 
     const selectPriority = (value) => {
-        setNewTaskValues({...newTaskValues, priority: value});
-        console.log(newTaskValues)
+        setTaskDetails({...taskDetails, priority: value});
+        console.log(taskDetails)
     }
 
     return (
@@ -55,7 +57,7 @@ function NewTask(props) {
                                 <Input
                                     type="test"
                                     name="title"
-                                    value={newTaskValues.name}
+                                    value={taskDetails.name}
                                     onChange={(e) => inputTaskName(e.target.value)}/>
                             </Col>
                         </FormGroup>
@@ -68,7 +70,7 @@ function NewTask(props) {
                                     type="textarea"
                                     name="text"
                                     id="exampleText"
-                                    placeholder={newTaskValues.description}
+                                    placeholder={taskDetails.description}
                                     onChange={(e) => inputTaskDescription(e.target.value)}/>
                             </Col>
                         </FormGroup>

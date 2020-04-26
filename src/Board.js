@@ -27,9 +27,11 @@ function Board() {
 
 
     const addNewTask = (obj) => {
-        const arr = [...taskList];
-        arr.push(obj);
-        setTaskList([...arr]);
+        const changed = _.cloneDeep(taskList);
+        //
+        // const arr = [...taskList];
+        changed[0].items.push(obj);
+        setTaskList(changed);
         toggleNewTask();
     };
 
@@ -183,11 +185,11 @@ function Board() {
             </Row>
 
 
-            {/*<NewTask addNewTask={addNewTask}*/}
-            {/*         toggleNewTask={toggleNewTask}*/}
-            {/*         newTaskValues={newTaskValues}*/}
-            {/*         setNewTaskValues={setNewTaskValues}*/}
-            {/*         modal={modal}/>*/}
+            <NewTask addNewTask={addNewTask}
+                     toggleNewTask={toggleNewTask}
+                     taskDetails={taskDetails}
+                     setTaskDetails={setTaskDetails}
+                     modal={modal}/>
 
             {/*<NewGroupModal*/}
             {/*    taskList={taskList}*/}
