@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import _ from 'lodash';
 import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
 import {Button, Col, Container, Row, ListGroup, ListGroupItem} from 'reactstrap';
 import {tasks} from './tasks';
@@ -15,7 +16,7 @@ function Board() {
 
     const emptyFields = {name: '', description: ''};
     const [newTaskValues, setNewTaskValues] = useState(emptyFields);
-    const [taskList, setTaskList] = useState(tasks);
+    const [taskList, setTaskList] = useState([...tasks]);
     const [modal, setModal] = useState(false);
     const [newGroupModal, setNewGroupModal] = useState(false);
     const [openTaskView, setOpenTaskView] = useState(false);
@@ -33,7 +34,7 @@ function Board() {
     };
 
     const openTask = (obj) => {
-        setTaskDetails({...obj})
+        setTaskDetails(obj)
         toggleTaskDetail();
     };
 
@@ -44,21 +45,32 @@ function Board() {
         setTaskList(arr)
     };
 
-    const changeTaskQueue = (idx, taskIdx, diff) => {
-        const arr = [...taskList];
-        const movedTask = arr[idx].splice(taskIdx, 1);
-        arr[idx].splice(taskIdx + diff, 0, movedTask[0]);
-        setTaskList(arr)
-    };
-
     const changeTaskValues = (obj) => {
-        const changedTask = [...taskList].map(task => task.map(el => el.id === taskDetails.id ? {...obj} : el));
-        setTaskList([...changedTask]);
+
+        let itemIndex;
+        let groupIndex;
+            taskList.map(group => group.items.map((item, index) => item.id === obj.id ? itemIndex = index : ''));
+            taskList.map((group,index) => group.items.map(item => item.id === obj.id ? groupIndex = index : ''));
+
+        const changed = _.cloneDeep(taskList);
+
+        changed[groupIndex].items.splice(itemIndex, 1, obj)
+
+        setTaskList(changed)
     };
 
     const removeTask = () => {
-        const changedTaskList = [...taskList].map(task => task.filter(el => el.id !== taskDetails.id));
-        setTaskList(changedTaskList);
+
+        let itemIndex;
+        let groupIndex;
+        taskList.map(group => group.items.map((item, index) => item.id === taskDetails.id ? itemIndex = index : ''));
+        taskList.map((group,index) => group.items.map(item => item.id === taskDetails.id ? groupIndex = index : ''));
+
+        const changed = _.cloneDeep(taskList);
+
+        changed[groupIndex].items.splice(itemIndex, 1)
+
+        setTaskList(changed)
     };
 
     const onDragEnd = (result, taskList, setTaskList) => {
@@ -127,7 +139,6 @@ function Board() {
                                                     color={column.color}
                                                     column={column}
                                                     changeTaskStatus={changeTaskStatus}
-                                                    changeTaskQueue={changeTaskQueue}
                                                     removeTask={removeTask}
                                                     setTaskDetails={setTaskDetails}
                                                     openTask={openTask}
@@ -149,7 +160,10 @@ function Board() {
                                                                                  ...provided.draggableProps.style
                                                                              }}
                                                                         >
-                                                                            <TaskCard task={item}/>
+                                                                            <TaskCard
+                                                                                openTask={openTask}
+                                                                                task={item}
+                                                                                id={id}/>
                                                                         </div>
                                                                     )
                                                                 }}
@@ -181,14 +195,14 @@ function Board() {
             {/*    newGroupModal={newGroupModal}*/}
             {/*    setNewGroupModal={setNewGroupModal}/>*/}
 
-            {/*<TaskDetailsView addNewTask={addNewTask}*/}
-            {/*                 toggle={toggleTaskDetail}*/}
-            {/*                 taskDetails={taskDetails}*/}
-            {/*                 setTaskDetails={setTaskDetails}*/}
-            {/*                 toggleDeleteConfirm={toggleDeleteConfirm}*/}
-            {/*                 removeTask={removeTask}*/}
-            {/*                 changeTaskValues={changeTaskValues}*/}
-            {/*                 openTaskView={openTaskView}/>*/}
+            <TaskDetailsView addNewTask={addNewTask}
+                             toggle={toggleTaskDetail}
+                             taskDetails={taskDetails}
+                             setTaskDetails={setTaskDetails}
+                             toggleDeleteConfirm={toggleDeleteConfirm}
+                             removeTask={removeTask}
+                             changeTaskValues={changeTaskValues}
+                             openTaskView={openTaskView}/>
 
             {/*<ManageGroupsModal taskList={taskList}*/}
             {/*                   setTaskList={setTaskList}*/}
@@ -196,9 +210,9 @@ function Board() {
             {/*                   setManageModal={setManageModal}*/}
             {/*/>*/}
 
-            {/*<DeleteConfirmModal toggleDeleteConfirm={toggleDeleteConfirm}*/}
-            {/*                    openDeleteConfirm={openDeleteConfirm}*/}
-            {/*                    removeTask={removeTask}/>*/}
+            <DeleteConfirmModal toggleDeleteConfirm={toggleDeleteConfirm}
+                                openDeleteConfirm={openDeleteConfirm}
+                                removeTask={removeTask}/>
         </Container>
     );
 }

@@ -13,6 +13,7 @@ const TaskCard = (props) => {
         changeTaskQueue,
         openTask,
         tasks,
+        id,
         toggleDeleteConfirm,
         setTaskDetails
     } = props;
@@ -45,6 +46,7 @@ const TaskCard = (props) => {
     };
 
     const onTaskClickHandler = () => {
+        console.log(task)
         openTask(task);
     };
 
@@ -60,7 +62,7 @@ const TaskCard = (props) => {
                 <Row
                     // className="pointer" onClick={onTaskClickHandler}
                     >
-                    <Col xs="2">
+                    {/*<Col xs="2">*/}
                         {/*<button*/}
                         {/*    className="border-0"*/}
                         {/*    color="secondary"*/}
@@ -73,7 +75,7 @@ const TaskCard = (props) => {
                         {/*    onClick={buttonDownHandler}>*/}
                         {/*    <FiChevronDown/>*/}
                         {/*</button>*/}
-                    </Col>
+                    {/*</Col>*/}
                     <Col lg="10">
                         <Label className="pointer overflow-name text-left" onClick={onTaskClickHandler}>
                             <strong >{task.name}</strong>
