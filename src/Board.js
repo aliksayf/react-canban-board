@@ -39,13 +39,13 @@ function Board() {
         setTaskDetails(obj)
         toggleTaskDetail();
     };
-
-    const changeTaskStatus = (idx, taskIdx, diff) => {
-        const arr = [...taskList];
-        const movedTask = arr[idx].splice(taskIdx, 1);
-        arr[idx + diff].push(movedTask[0]);
-        setTaskList(arr)
-    };
+    //
+    // const changeTaskStatus = (idx, taskIdx, diff) => {
+    //     const arr = [...taskList];
+    //     const movedTask = arr[idx].splice(taskIdx, 1);
+    //     arr[idx + diff].push(movedTask[0]);
+    //     setTaskList(arr)
+    // };
 
     const changeTaskValues = (obj) => {
 
@@ -140,7 +140,6 @@ function Board() {
                                                     ref={provided.innerRef}
                                                     color={column.color}
                                                     column={column}
-                                                    changeTaskStatus={changeTaskStatus}
                                                     removeTask={removeTask}
                                                     setTaskDetails={setTaskDetails}
                                                     openTask={openTask}
